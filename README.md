@@ -1,6 +1,6 @@
-# Cloud Infrastructure Scenarios
+# Infra Party
 
-This repository contains Terraform configurations and automation scripts for creating
+Infra Party contains Terraform configurations and automation scripts for creating
 cloud infrastructure scenarios on Google Cloud Platform. It currently ships with:
 
 - **VPC Flow Logs**: Generates internal VM traffic and exports subnet flow logs.
