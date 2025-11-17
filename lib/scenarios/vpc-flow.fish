@@ -32,7 +32,7 @@ function scenario::print_next_steps
   printf '\nNext steps:\n'
   printf '  - Allow ~10 minutes for VPC flow logs to ingest (aggregation interval 5 min).\n'
   printf '  - Run `./run.fish export --scenario=%s` to capture relevant entries.\n' "$SCENARIO"
-  printf '  - Remember to clean up resources with run.fish teardown --scenario=%s when finished.\n\n' "$SCENARIO"
+  printf '  - Remember to clean up resources with run.fish destroy --scenario=%s when finished.\n\n' "$SCENARIO"
 end
 
 function scenario::__ensure_time_defaults

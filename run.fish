@@ -1,11 +1,11 @@
 #!/usr/bin/env fish
-# Unified entrypoint for generating and tearing down fixture infrastructure.
+# Unified entrypoint for generating and destroying fixture infrastructure.
 
 function usage
-  printf 'Usage: run.fish <generate|teardown|export> [options]\n'
+  printf 'Usage: run.fish <generate|destroy|export> [options]\n'
   printf '\nOptions:\n'
   printf '  --scenario=<name>        Scenario to operate on (required).\n'
-  printf '  --dry-run=true|false     Teardown only: plan destroy instead of apply (default true).\n'
+  printf '  --dry-run=true|false     Destroy only: plan destroy instead of apply (default true).\n'
   printf '  --help                   Show this help message.\n\n'
 end
 
@@ -25,7 +25,7 @@ set -l command $argv[1]
 set -l args $argv[2..-1]
 
 switch $command
-  case 'generate' 'teardown' 'export'
+  case 'generate' 'destroy' 'export'
   case '*'
     printf 'Unknown command: %s\n' "$command" >&2
     usage
@@ -40,8 +40,8 @@ end
 
 set -l dry_run true
 if set -q _flag_dry_run
-  if test "$command" != 'teardown'
-    printf '--dry-run is only valid for the teardown command.\n' >&2
+  if test "$command" != 'destroy'
+    printf '--dry-run is only valid for the destroy command.\n' >&2
     exit 1
   end
   set -l dry_run_value (string lower $_flag_dry_run[-1])
@@ -136,12 +136,12 @@ switch $command
       exit 1
     end
     rm -f "$tf_output_file"
-  case 'teardown'
-    common::log "Terraform teardown running with dry-run=$dry_run (scenario=$SCENARIO)"
+  case 'destroy'
+    common::log "Terraform destroy running with dry-run=$dry_run (scenario=$SCENARIO)"
     if test "$dry_run" = 'true'
       common::terraform_plan_destroy "$terraform_dir"
     else
       common::terraform_destroy "$terraform_dir"
     end
-    common::log "Terraform teardown complete."
+    common::log "Terraform destroy complete."
 end

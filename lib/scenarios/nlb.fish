@@ -95,7 +95,7 @@ function scenario::print_next_steps
   printf '\nNext steps:\n'
   printf '  - Allow several minutes for load balancer logs to ingest.\n'
   printf '  - Run `./run.fish export --scenario=%s` to capture relevant entries.\n' "$SCENARIO"
-  printf '  - Tear down the scenario with run.fish teardown --scenario=%s --dry-run=false when done.\n\n' "$SCENARIO"
+  printf '  - Destroy the scenario with run.fish destroy --scenario=%s --dry-run=false when done.\n\n' "$SCENARIO"
 end
 
 function scenario::__ensure_time_defaults
