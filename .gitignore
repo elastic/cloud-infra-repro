@@ -1,5 +1,5 @@
-vpc_flow_fixtures.env
-vpc-fixtures-out/
+config.env
+*-fixtures-out/
 .terraform
 *.tfstate
 *.tfstate.backup

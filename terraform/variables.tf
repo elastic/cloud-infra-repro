@@ -39,14 +39,14 @@ variable "resource_prefix" {
   }
 }
 
-locals {
-  network_name           = "${var.resource_prefix}-network"
-  subnet_name            = "${var.resource_prefix}-subnet"
-  mig_name               = "${var.resource_prefix}-mig"
-  template_name          = "${var.resource_prefix}-template"
-  firewall_internal_name = "${var.resource_prefix}-allow-internal"
-  firewall_ssh_name      = "${var.resource_prefix}-allow-ssh"
-  base_instance_name     = "${var.resource_prefix}-vm"
-  instance_tag           = var.resource_prefix
+variable "scenario" {
+  description = "Fixture scenario to deploy. Supported values: \"vpc-flow\", \"nlb\"."
+  type        = string
+  default     = "vpc-flow"
+
+  validation {
+    condition = contains(["vpc-flow", "nlb"], var.scenario)
+    error_message = "scenario must be one of: vpc-flow, nlb."
+  }
 }
 
