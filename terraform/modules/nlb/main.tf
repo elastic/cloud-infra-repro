@@ -247,6 +247,8 @@ resource "google_compute_forwarding_rule" "nlb" {
   network_tier          = "STANDARD"
   network               = google_compute_network.fixture_network.id
   # Proxy-only subnet is auto-discovered by GCP based on network and region
+
+  depends_on = [google_compute_subnetwork.proxy_only_subnet]
 }
 
 resource "google_compute_instance" "client" {

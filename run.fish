@@ -141,6 +141,7 @@ switch $command
     if test "$dry_run" = 'true'
       common::terraform_plan_destroy "$terraform_dir"
     else
+      # Note the scenario is passed implicitly as a global environment variable.
       common::terraform_destroy "$terraform_dir"
     end
     common::log "Terraform destroy complete."
